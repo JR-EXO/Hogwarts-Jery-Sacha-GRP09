@@ -34,6 +34,7 @@ def ask_number(message: str, min_val: Optional[int] = None, max_val: Optional[in
     Returns:
         int: The validated number entered by the user
     """
+
     while True:
         user_input = input(message).strip()
         
