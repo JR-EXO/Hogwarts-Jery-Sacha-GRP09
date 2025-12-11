@@ -1,31 +1,28 @@
 from typing import Dict, List, Tuple, Any
 from utils.input_utils import ask_choice, ask_number
 
-# Constants
 HOUSES = ["Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw"]
 DEFAULT_HOUSES = {house: 0 for house in HOUSES}
 
-def update_house_points(houses: Dict[str, int], house_name: str, points: int) -> None:
+def update_house_points(houses: Dict[str, int], house_name: str, points: int):
     """
     Update the points of a specific house.
-    
-    Args:
+    Arg:
         houses: Dictionary with house names as keys and their current points as values
-        house_name: Name of the house to update
-        points: Points to add (can be negative to subtract)
+        house_name: Name of the house
+        points: points to add or substract
     """
-    if house_name not in houses:
+
+    if house_name not in houses :
         print(f"Warning: House '{house_name}' not found.")
         return
-    
     houses[house_name] += points
     print(f"{house_name}: {points:+} points. New total: {houses[house_name]} points")
 
 
-def display_winning_house(houses: Dict[str, int]) -> None:
+def display_winning_house(houses: Dict[str, int]) :
     """
     Display the house(s) with the highest score.
-    
     Args:
         houses: Dictionary with house names as keys and their current points as values
     """
@@ -43,48 +40,43 @@ def display_winning_house(houses: Dict[str, int]) -> None:
         print(f"\nIt's a tie between {tied_houses} with {max_points} points each!")
 
 
-def assign_house(character: Dict[str, Any], questions: List[Tuple[str, List[str], List[str]]]) -> str:
+def assign_house(character: Dict[str, Any], questions: List[Tuple[str, List[str], List[str]]]) :
     """
-    Determine the player's house based on character attributes and answers to questions.
-    
-    Args:
-        character: Dictionary containing character attributes (courage, intelligence, loyalty, ambition)
-        questions: List of tuples containing (question_text, choices, house_weights)
-        
-    Returns:
-        str: Name of the assigned house
+    Determine the player's house based on character attributes
+    Arg:
+        character: Dictionary containing character attributes : courage, intelligence,loyalty, ambition
+        questions: List of tuples containing: question_text, choices, house_weights
+    Return:
+        str: name of the assigned house
     """
-    # Initialize house scores
     house_scores = {house: 0 for house in HOUSES}
-    
-    # Add points based on character attributes (each attribute is worth 2 points)
+    #each worth 2 points
     house_scores["Gryffindor"] += character.get("courage", 0) * 2
     house_scores["Slytherin"] += character.get("ambition", 0) * 2
     house_scores["Hufflepuff"] += character.get("loyalty", 0) * 2
     house_scores["Ravenclaw"] += character.get("intelligence", 0) * 2
     
-    # Ask questions and update scores
+    # update score
     for i, (question, choices, house_weights) in enumerate(questions, 1):
         print(f"\nQuestion {i}: {question}")
         answer_index = ask_choice("Choose an answer:", choices) - 1
         chosen_house = house_weights[answer_index]
         house_scores[chosen_house] += 3  # Each answer is worth 3 points
     
-    # Display final scores
+    #finalscore
     print("\nSummary of scores:")
     for house, score in sorted(house_scores.items(), key=lambda x: x[1], reverse=True):
         print(f"{house}: {score} points")
     
-    # Determine winning house
+    #winner
     max_score = max(house_scores.values())
     winning_houses = [house for house, score in house_scores.items() if score == max_score]
-    
-    # In case of a tie, select the first one (or implement tiebreaker if needed)
+
     return winning_houses[0]
 
 """
 def test_house_functions():
-    """"""Test function to demonstrate the house module functionality.""""""
+    """"""Test function.""""""
     # Test update_house_points
     print("=== Testing update_house_points ===")
     houses = DEFAULT_HOUSES.copy()

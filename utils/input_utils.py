@@ -78,17 +78,14 @@ def ask_choice(message: str, options: List[Any]) :
             print(f"Please enter a number between 1 and {len(options)}")
 
 
-def load_file(file_path: str) -> Union[dict, list]:
+def load_file(file_path: str):
     """
-    Load and parse a JSON file.
-    
-    Args:
-        file_path (str): Path to the JSON file
-        
+    Load and parse a JSON file:
+    Arg:
+        file_path (str): path to the JSON file
     Returns:
-        Union[dict, list]: The parsed JSON data
-        
-    Raises:
+        Union[dict, list]: the parsed JSON data
+    Raises(error):
         FileNotFoundError: If the file doesn't exist
         json.JSONDecodeError: If the file contains invalid JSON
     """
@@ -102,18 +99,14 @@ def load_file(file_path: str) -> Union[dict, list]:
 
 
 if __name__ == "__main__":
-    # Test ask_text
     name = ask_text("Enter your character's name: ")
     print(f"Welcome, {name}!")
 
     age = ask_number("Enter your age: ", 1, 150)
     print(f"You are {age} years old.")
-    
 
     choice = ask_choice("Choose your house:", ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"])
     print(f"You chose: {choice}")
-    
-
     try:
         data = load_file("test.json")
         print("File loaded successfully:", data)
