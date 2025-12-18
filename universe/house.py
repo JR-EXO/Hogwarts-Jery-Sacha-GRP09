@@ -41,7 +41,7 @@ def assign_house(character: Dict[str, Any], questions: List[Tuple[str, List[str]
         print(f"\nQuestion {i}: {question}")
         answer_index = ask_choice("Choose an answer:", choices) - 1
         chosen_house = house_weights[answer_index]
-        house_scores[chosen_house] += 3  # Each answer is worth 3 points
+        house_scores[chosen_house] += 3
     
 
     print("\nSummary of scores:")

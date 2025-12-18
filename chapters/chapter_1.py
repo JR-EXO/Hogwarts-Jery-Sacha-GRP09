@@ -73,18 +73,18 @@ Deputy Headmistress""")
     print("Do you accept this invitation and go to Hogwarts?")
     choice = ask_choice("Your choice: ", ["Yes, of course!", "No, I'd rather stay..."])
 
-    if choice == 1:  # Yes
+    if choice == 1:
         print("\nExcellent! Your magical education is about to begin!")
         input("\nPress Enter to continue...")
         return True
-    else:  # No
+    else:
         print("\nYou tear up the letter, and your family cheers:")
         print("\"EXCELLENT! Finally, someone NORMAL in this house!\"")
         print("\nThe magical world will never know you existed... Game over.")
         input("\nPress Enter to exit...")
         sys.exit(0)
 
-def meet_hagrid(character: Dict) -> None:
+def meet_hagrid(character: Dict):
     print("\n" + "="*80)
     print("MEETING HAGRID")
     print("="*80)
@@ -99,17 +99,16 @@ def meet_hagrid(character: Dict) -> None:
     print("Do you want to follow Hagrid?")
     choice = ask_choice("Your choice: ", ["Yes", "No"])
 
-    if choice == 1:  # Yes
+    if choice == 1:
         print("\nHagrid grins: 'Great! Follow me, we've got lots to do!'")
-    else:  # No
+    else:
         print("\nHagrid's smile fades for a moment, then he says:")
         print("'No time for second thoughts! Yer a wizard now, " + character["First Name"] + "!'")
         print("He gently but firmly takes your arm and leads you out the door.")
 
     input("\nPress Enter to continue to Diagon Alley...")
 
-def buy_supplies(character: Dict) -> None:
-    """Handle the shopping scene in Diagon Alley."""
+def buy_supplies(character: Dict) :
     print("\n" + "="*80)
     print("DIAGON ALLEY")
     print("="*80)
@@ -152,18 +151,17 @@ def buy_supplies(character: Dict) -> None:
         choice = ask_number("\nEnter the number of the item to buy (or 0 to finish shopping): ", 0, len(items))
 
         if choice == 0:
-            break
+            return None
 
         selected_item = items[choice - 1]
 
         if selected_item["name"] in purchased_items:
             print(f"You've already bought {selected_item['name']}!")
-            continue
+
 
 
         if selected_item["price"] > character["Money"]:
             print("You don't have enough Galleons for that!")
-            continue
 
         character["Money"] -= selected_item["price"]
         purchased_items.append(selected_item["name"])
@@ -206,7 +204,7 @@ def buy_supplies(character: Dict) -> None:
     print(f"\nYou have {character['Money']} Galleons left.")
     choice = ask_number("Which pet do you want? (enter number): ", 1, len(pets))
     selected_pet = pets[choice - 1]
-#a
+
     if selected_pet["price"] > character["Money"]:
         print("You don't have enough Galleons for that pet!")
 
