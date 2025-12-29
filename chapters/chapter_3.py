@@ -138,7 +138,6 @@ def start_chapter_3(character: Dict[str, Any], houses: List[Dict[str, Any]]):
 
 """
 if __name__ == "__main__":
-    # Create a test character
     test_character = {
         "name": "Test Student",
         "house": "Gryffindor",

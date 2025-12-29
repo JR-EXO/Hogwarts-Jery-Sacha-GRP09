@@ -15,7 +15,7 @@ def introduction():
     input("\nPress Enter to begin your adventure...")
     print("\n" + "-"*80)
 
-def create_character() -> Dict:
+def create_character():
 
     print("\n" + "="*80)
     print("CHARACTER CREATION")
@@ -49,7 +49,7 @@ def create_character() -> Dict:
 
     return character
 
-def receive_letter() -> bool:
+def receive_letter():
 
     print("\n" + "="*80)
     print("THE HOGWARTS LETTER")
