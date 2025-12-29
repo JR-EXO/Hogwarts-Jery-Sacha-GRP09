@@ -3,11 +3,11 @@ from typing import List, Any, Union, Optional
 
 
 def ask_text(message: str):
-    while True:
-        user_input = input(message).strip()
-        if user_input:
-            return user_input
-        print("Error: Input cannot be empty. Please try again.")
+
+    user_input = input(message).strip()
+    if user_input:
+        return user_input
+    print("Error: Input cannot be empty. Please try again.")
 
 
 def is_valid_number(s: str) :
@@ -19,7 +19,9 @@ def is_valid_number(s: str) :
         if not s:
             return False
 
-    return all(c.isdigit() for c in s)
+    for c in s:
+        if not '0' <= c <= '9':
+            return False
 
 
 def ask_number(message, min_val=None, max_val=None):
@@ -66,26 +68,17 @@ def ask_choice(message: str, options: List[Any]) :
     for i, option in enumerate(options, 1):
         print(f"{i}. {option}")
 
-    while True:
-        try:
-            choice = ask_number("Your choice: ", 1, len(options))
-            return options[choice - 1]
-        except (ValueError, IndexError):
-            print(f"Please enter a number between 1 and {len(options)}")
+
+    choice = ask_number("Your choice: ", 1, len(options))
+    return options[choice - 1]
+
 
 
 def load_file(file_path: str):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return json.load(file)
 
-
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        raise FileNotFoundError(f"The file {file_path} was not found.")
-    except json.JSONDecodeError as e:
-        raise ValueError(f"Invalid JSON in file {file_path}: {str(e)}")
-
-
+"""
 if __name__ == "__main__":
     name = ask_text("Enter your character's name: ")
     print(f"Welcome, {name}!")
@@ -100,3 +93,4 @@ if __name__ == "__main__":
         print("File loaded successfully:", data)
     except Exception as e:
         print(f"Error loading file: {e}")
+"""

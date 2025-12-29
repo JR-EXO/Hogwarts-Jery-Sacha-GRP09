@@ -1,6 +1,7 @@
 import json
 import os
 from typing import Dict, List, Tuple
+from utils.input_utils import *
 
 def meet_friends(character: Dict[str, any]):
     print("\nYou board the Hogwarts Express. The train slowly departs northward...")
@@ -10,7 +11,7 @@ def meet_friends(character: Dict[str, any]):
     print("1. Sure, have a seat!")
     print("2. Sorry, I prefer to travel alone.")
     
-    choice = input("Your choice (1-2): ")
+    choice = ask_number("Your choice (1-2): ", 1, 2)
     if choice == "1":
         character["loyalty"] += 1
         print("Ron smiles: — Awesome! You'll see, Hogwarts is amazing!")
@@ -24,7 +25,7 @@ def meet_friends(character: Dict[str, any]):
     print("1. Yes, I love learning new things!")
     print("2. Uh… no, I prefer adventures over books.")
     
-    choice = input("Your choice (1-2): ")
+    choice = ask_number("Your choice (1-2): ", 1, 2)
     if choice == "1":
         character["intelligence"] += 1
         print("Hermione smiles: — Oh, that's rare! You must be very clever!")
@@ -38,7 +39,7 @@ def meet_friends(character: Dict[str, any]):
     print("2. Ignore him completely.")
     print("3. Respond with arrogance.")
     
-    choice = input("Your choice (1-3): ")
+    choice = ask_number("Your choice (1-3): ", 1, 3)
     if choice == "1":
         character["ambition"] += 1
         print("Draco smirks: — Wise choice. We'll see if you're worthy.")
@@ -85,16 +86,13 @@ def sorting_ceremony(character: Dict[str, any]):
     print("\nThe Sorting Hat is placed on your head...")
     print("Hmm... difficult. Very difficult. Let's see...")
     
-    for i, (question, options, houses) in enumerate(questions, 1):
+    for i in range(1, len(questions)+1):
+        question, options, houses = questions[i-1]
         print(f"\n{question}")
-        for j, option in enumerate(options, 1):
-            print(f"{j}. {option}")
-
-        choice = input("\nYour choice (1-4): ")
-        while not (choice.isdigit() and 1 <= int(choice) <= 4):
-            print("Please enter a number between 1 and 4.")
-            choice = input("\nYour choice (1-4): ")
-        selected_house = houses[int(choice)-1]
+        for j in range(1, len(options)+1):
+            print(f"{j}. {options[j-1]}")
+        choice = ask_number("\nYour choice (1-4): ", 1, 4)
+        selected_house = houses[choice-1]
         house_scores[selected_house] += 10 - (i-1)
         
         if i < len(questions):
@@ -137,7 +135,7 @@ def enter_common_room(character: Dict[str, any]):
         print("🐍 You discover a vaulted common room, illuminated by the green glow of the lake.")
     elif house == "Hufflepuff":
         print("🦡 You step into a warm, round room with honey-colored wood and lots of plants.")
-    else:  # Ravenclaw
+    else:
         print("🦅 You enter a spacious, airy room with a domed ceiling painted with stars.")
     
     print(f"✨ {house_info.get('welcome_message', 'Welcome to your new home!')}")

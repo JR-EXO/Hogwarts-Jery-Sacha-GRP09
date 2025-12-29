@@ -238,7 +238,7 @@ def start_chapter_1():
     input("\nPress Enter to continue to Chapter 2...")
 
     return character
-
+"""
 if __name__ == "__main__":
 
     print("HARRY POTTER: THE HOGWARTS ADVENTURE")
@@ -253,3 +253,4 @@ if __name__ == "__main__":
         display_character(player_character)
     else:
         print("\nGame over. Better luck next time!")
+"""
