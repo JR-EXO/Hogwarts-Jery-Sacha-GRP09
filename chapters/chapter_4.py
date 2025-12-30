@@ -1,14 +1,10 @@
-import json
+
 import random
 from utils.input_utils import *
 
 
 def load_teams():
     file_path = 'data/teams_quidditch.json'
-    if not os.path.exists(file_path):
-        print("Error: teams_quidditch.json not found!")
-        return None
-
     with open(file_path, 'r') as f:
         return json.load(f)
 
@@ -157,4 +153,4 @@ if __name__ == "__main__":
     }
     
     start_chapter_4(test_character, test_houses)
-""""
+"""

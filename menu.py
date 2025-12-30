@@ -36,7 +36,8 @@ def launch_menu_choice():
                 if points_earned:
                     houses[house] += points_earned
                     print("\n=== Chapter 4: The Quidditch Challenge ===\n")
-                    #ajoute après que t'a fait la partie 4
+                    from chapters.chapter_4 import start_chapter_4
+                    start_chapter_4(house, houses)
 
 
 
