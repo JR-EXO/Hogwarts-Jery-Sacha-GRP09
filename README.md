@@ -30,18 +30,18 @@ Multiple chapters with branching narratives
 
 Log book :
 
-  Project time line :
-  Week 1: creating the bases needed before the start of the chapters
-  Week 2: chapter 1 and 2
-  Week 3: chapter 3 and testing chapter 1 and 2
-  Week 4: chapter 4 and fixing issues
-  Week 5: Testing and bug fixes
+Project time line :
+Week 1: creating the bases needed before the start of the chapters
+Week 2: chapter 1 and 2
+Week 3: chapter 3 and testing chapter 1 and 2
+Week 4: chapter 4 and fixing issues
+Week 5: Testing and bug fixes
 
-  Task distribution :
-  We assigned our self tasks and then take knowledge from the work of each other while pointing out errors that can be made 
-  input utils : we both were contribuing
-  Sacha : house , README , chapter2 and chapter 4
-  Jery : character , chapter 1 , chapter 3 , main and menu
+Task distribution :
+We assigned our self tasks and then take knowledge from the work of each other while pointing out errors that can be made 
+input utils : we both were contribuing
+Sacha : house , README , chapter2 and chapter 4
+Jery : character , chapter 1 , chapter 3 , main and menu
   
 Control, Testing, and Validation :
 
