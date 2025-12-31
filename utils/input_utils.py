@@ -33,7 +33,7 @@ def ask_number(message, min_val=None, max_val=None):
         is_valid = False
 
     is_negative = False
-    if user_input[0] == '-':
+    if user_input[0] == '-' and is_valid:
         is_negative = True
         user_input = user_input[1:]
 
@@ -82,23 +82,6 @@ def input_continue(prompt: str = "Press Enter to continue..."):
     input(prompt)
 
 
-
-def sort_dict(d):
-    keys = []
-
-    for k in d:
-        keys.append(k)
-    n = len(keys)
-    for i in range(n):
-        for j in range(0, n - i - 1):
-            if keys[j] > keys[j + 1]:
-                keys[j], keys[j + 1] = keys[j + 1], keys[j]
-    sorted_dict = {}
-
-    for k in keys:
-        sorted_dict[k] = d[k]
-
-    return sorted_dict
 
 
 """

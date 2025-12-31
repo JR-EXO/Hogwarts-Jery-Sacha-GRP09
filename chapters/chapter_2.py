@@ -1,6 +1,5 @@
-import json
 import os
-from typing import Dict, List, Tuple
+from typing import Dict
 from utils.input_utils import *
 
 def meet_friends(character: Dict[str, any]):
@@ -12,11 +11,11 @@ def meet_friends(character: Dict[str, any]):
     print("2. Sorry, I prefer to travel alone.")
     
     choice = ask_number("Your choice (1-2): ", 1, 2)
-    if choice == "1":
-        character["loyalty"] += 1
+    if choice == 1:
+        character["Attributes"]["loyalty"] += 1
         print("Ron smiles: — Awesome! You'll see, Hogwarts is amazing!")
     else:
-        character["ambition"] += 1
+        character["Attributes"]["ambition"] += 1
         print("Ron shrugs: — Suit yourself. See you around, I guess.")
     
 
@@ -26,11 +25,11 @@ def meet_friends(character: Dict[str, any]):
     print("2. Uh… no, I prefer adventures over books.")
     
     choice = ask_number("Your choice (1-2): ", 1, 2)
-    if choice == "1":
-        character["intelligence"] += 1
+    if choice == 1:
+        character["Attributes"]["intelligence"] += 1
         print("Hermione smiles: — Oh, that's rare! You must be very clever!")
     else:
-        character["courage"] += 1
+        character["Attributes"]["courage"] += 1
         print("Hermione raises an eyebrow: — Well, I suppose adventures can be educational too.")
 
     print("\nA blonde boy enters, looking arrogant.")
@@ -40,14 +39,14 @@ def meet_friends(character: Dict[str, any]):
     print("3. Respond with arrogance.")
     
     choice = ask_number("Your choice (1-3): ", 1, 3)
-    if choice == "1":
-        character["ambition"] += 1
+    if choice == 1:
+        character["Attributes"]["ambition"] += 1
         print("Draco smirks: — Wise choice. We'll see if you're worthy.")
     elif choice == "2":
-        character["loyalty"] += 1
+        character["Attributes"]["loyalty"] += 1
         print("Draco frowns: — You'll regret that!")
     else:
-        character["courage"] += 1
+        character["Attributes"]["courage"] += 1
         print("Draco's eyes narrow: — Watch your back.")
     
     print("\nThe train continues its journey. Hogwarts Castle appears on the horizon...")
@@ -103,8 +102,20 @@ def sorting_ceremony(character: Dict[str, any]):
     house_scores["Hufflepuff"] += character.get("loyalty", 0)
     house_scores["Ravenclaw"] += character.get("intelligence", 0)
 
+    items = []
+    for house in house_scores:
+        items.append((house, house_scores[house]))
 
-    sorted_houses = sort_dict(house_scores.items())
+    n = len(items)
+
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if items[j][1] < items[j + 1][1]:
+                temp = items[j]
+                items[j] = items[j + 1]
+                items[j + 1] = temp
+
+    sorted_houses = items
     character["house"] = sorted_houses[0][0]
 
     print("\nSummary of scores:")
@@ -172,4 +183,4 @@ def start_chapter_2(character: Dict[str, any]):
     print("Your journey at Hogwarts is just beginning...")
     print("Classes start tomorrow - be ready for new adventures!")
     print("="*50 + "\n")
-
+    return character["house"]

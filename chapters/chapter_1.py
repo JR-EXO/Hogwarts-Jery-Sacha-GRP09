@@ -1,9 +1,9 @@
 import os
 import sys
 from typing import Dict
-from utils.input_utils import ask_text, ask_number, ask_choice, load_file
+from utils.input_utils import ask_text, ask_number, ask_choice, load_file, input_continue
 from universe.character import init_character, display_character, add_item
-
+import data
 def introduction():
 
     print("\n" + "="*80)
@@ -33,10 +33,10 @@ def create_character():
 
 
     attributes = {
-        "Courage": courage,
-        "Intelligence": intelligence,
-        "Loyalty": loyalty,
-        "Ambition": ambition
+        "courage": courage,
+        "intelligence": intelligence,
+        "loyalty": loyalty,
+        "ambition": ambition
     }
 
     character = init_character(last_name, first_name, attributes)
@@ -119,7 +119,10 @@ def buy_supplies(character: Dict) :
     print("\nThe most magical shopping street in the wizarding world unfolds before you.")
 
 
-    inventory_data = load_file(os.path.join("data", "inventory.json"))
+
+
+    inventory_path = os.path.join("data/inventory.json")
+    inventory_data = load_file(inventory_path)
     items = inventory_data.get("items", [])
 
 
@@ -183,7 +186,7 @@ def buy_supplies(character: Dict) :
         print(f"You're missing: {', '.join(required_items)}")
         print("\nHagrid shakes his head: 'Yeh can't go to Hogwarts without all yer supplies!'")
         print("Game over!")
-        input("\nPress Enter to exit...")
+        input_continue("\nPress Enter to exit...")
         sys.exit(0)
 
 
@@ -196,8 +199,9 @@ def buy_supplies(character: Dict) :
 
 
     print("\nAvailable pets:")
-    for i, pet in enumerate(pets, 1):
-        print(f"{i}. {pet['name']} - {pet['price']} Galleons")
+    for idx in range(len(pets)):
+        pet = pets[idx]
+        print(f"{idx + 1}. {pet['name']} - {pet['price']} Galleons")
 
 
 
@@ -219,7 +223,7 @@ def buy_supplies(character: Dict) :
     print("\nAll required items have been successfully purchased! Here is your final inventory:")
     display_character(character)
     print("\nHagrid claps his hands together: 'Brilliant! Now we're all set for Hogwarts!'")
-    input("\nPress Enter to continue...")
+    input_continue("\nPress Enter to continue...")
 
 def start_chapter_1():
     introduction()

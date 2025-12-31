@@ -17,8 +17,8 @@ def create_team(house, team_data, is_player=False, player=None):
     }
 
     if is_player and player:
-        seekers = [f"{player['name']} (Seeker)"]
-        non_seekers = [p for p in team_data['players'] if player['name'] not in p]
+        seekers = [f"{player['First Name']} (Seeker)"]
+        non_seekers = [p for p in team_data['players'] if player['First Name'] not in p]
         team['players'] = seekers + non_seekers
     
     return team
@@ -67,7 +67,7 @@ def play_quidditch(character, houses):
     opponent_team = create_team(opponent_house, teams_data[opponent_house])
     
     display_teams(player_team, opponent_team)
-    print(f"\nYou are playing as {character['name']}, Seeker for {player_house}!")
+    print(f"\nYou are playing as {character['First Name']}, Seeker for {player_house}!")
     input_continue("\nPress Enter to start the match...")
     
     turn = 1
@@ -105,7 +105,7 @@ def play_quidditch(character, houses):
         print("\nIt's a draw!")
         return
     
-    houses[winning_house] = houses.get(winning_house, 0) + 500
+    houses[winning_house] = houses[winning_house] if winning_house in houses else 0 + 500
     print(f"\n{winning_house} earns 500 points for the House Cup!")
 
 def start_chapter_4(character, houses):

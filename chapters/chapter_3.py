@@ -3,6 +3,7 @@ import random
 import os
 from typing import Dict, List, Any
 from utils.input_utils import *
+from universe.character import *
 
 
 def learn_spells(character: Dict[str, Any], file_path: str = "../data/spells.json"):
@@ -80,7 +81,7 @@ def magic_quiz(character: Dict[str, Any], file_path: str = "../data/magic_quiz.j
 def update_house_points(houses: List[Dict[str, Any]], house_name: str, points: int):
 
     for house in houses:
-        if house['name'].lower() == house_name.lower():
+        if house["name"].lower() == house_name.lower():
             house['points'] = house.get('points', 0) + points
 
 def get_leading_house(houses: List[Dict[str, Any]]):
@@ -94,20 +95,6 @@ def get_leading_house(houses: List[Dict[str, Any]]):
             leading_house = house
 
     return leading_house['name']
-
-def display_character_info(character: Dict[str, Any]):
-
-    print("\n=== Character Information ===")
-    print(f"Name: {character.get('name', 'Unknown')}")
-    print(f"House: {character.get('house', 'Not assigned')}")
-    print(f"Score: {character.get('score', 0)} points")
-    
-    if 'spells' in character and character['spells']:
-        print("\nSpells known:")
-        for spell in character['spells']:
-            print(f"- {spell['name']} ({spell['type']}): {spell['description']}")
-    
-    print("=" * 30)
 
 def start_chapter_3(character: Dict[str, Any], houses: List[Dict[str, Any]]):
     print("\n" + "=" * 50)
@@ -130,7 +117,7 @@ def start_chapter_3(character: Dict[str, Any], houses: List[Dict[str, Any]]):
     print(f"\n{leading_house} is in the lead!")
 
     input_continue("\nPress Enter to view your character information...")
-    display_character_info(character)
+    display_character(character)
     
     print("\nEnd of Chapter 3. Well done on completing your first magic lessons at Hogwarts!")
 
