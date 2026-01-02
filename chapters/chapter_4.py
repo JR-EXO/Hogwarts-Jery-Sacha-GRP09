@@ -125,6 +125,7 @@ def start_chapter_4(character, houses):
     
     print("\n" + "="*50)
     print("END OF CHAPTER 4")
+    print("SEE YOU AROUND SORCERER!")
     print("="*50)
     
     print("\nCurrent House Points:")
