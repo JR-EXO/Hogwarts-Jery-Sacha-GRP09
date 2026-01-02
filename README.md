@@ -70,8 +70,24 @@ Control, Testing, and Validation :
 
 Input and Error Management:
 
+We had this type of error :
+"C:\Users\20241530\Documents\GitHub\Hogwarts\chapters\chapter_2.py", 
+line 16, in meet_friends character["loyalty"] += 1 
+                        "~~~~~~~~~^^^^^^^^^^^ 
+KeyError: 'loyalty'"
+It was due to the fact that keys had uppercase and lowercase letters. 
+
+We also had this in the input utils:
+"C:\Users\20241530\Documents\GitHub\Hogwarts\utils\input_utils.py", 
+line 36, in ask_number if user_input[0] == '-': 
+                        "~~~~~~~~~~^^^ IndexError: string index out of range
+The variable checking if nothing was inputed was not in the if statement.
+
+
 The program originally stopped when the user entered an unwanted or invalid input. 
 This was fixed by adding input validation loops so the question is asked again until a correct answer is provided.
+
+We had similar error during the project, but no big one.
 
 Because predefined functions were not allowed, some built-in behaviors had to be recreated manually in the 
 utils folder using loops and conditions.
@@ -84,6 +100,8 @@ Testing Strategies:
 
 Each chapter of the program was tested individually to save time and to make it easier to identify and 
 fix errors without running the entire game.
+
+We had to import json directly inside the chapter file because it didn't recognize it as a module, and also the path was messy.
 
 Specific test cases were used, including valid inputs to verify normal program behavior and invalid inputs (such as empty input, non-numeric values, or incorrect choices) to ensure 
 the program asks the user again instead of stopping.
