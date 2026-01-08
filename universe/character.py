@@ -1,3 +1,5 @@
+from utils.input_utils import *
+
 def init_character(last_name, first_name, attributes):
 
     return {
@@ -28,12 +30,8 @@ def display_character(character):
 
 
 def modify_money(character, amount):
-    if not isinstance(amount, int):
-        raise ValueError("Amount must be an integer")
     character['Money'] += amount
 
 
 def add_item(character, key, item):
-    if key not in ['Inventory', 'Spells']:
-        raise ValueError("Key must be either 'Inventory' or 'Spells'")
     character[key].append(str(item))

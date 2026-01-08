@@ -112,8 +112,18 @@ def start_chapter_3(character: Dict[str, Any], houses: List[Dict[str, Any]]):
 
     leading_house = get_leading_house(houses)
     print(f"\nCurrent house standings:")
-    for house in sorted(houses, key=lambda h: h.get('points', 0), reverse=True):
-        print(f"- {house['name']}: {house.get('points', 0)} points")
+    house_list = []
+    for house in houses:
+        house_list.append((house["name"], house.get('points', 0)))
+
+    n = len(house_list)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if house_list[j][1] < house_list[j + 1][1]:
+                house_list[j], house_list[j + 1] = house_list[j + 1], house_list[j]
+
+    for house, points in house_list:
+        print(f"- {house}: {points} points")
     print(f"\n{leading_house} is in the lead!")
 
     input_continue("\nPress Enter to view your character information...")

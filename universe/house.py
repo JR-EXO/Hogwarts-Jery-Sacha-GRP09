@@ -19,7 +19,10 @@ def display_winning_house(houses: Dict[str, int]) :
         print("No houses data available.")
         return
     
-    max_points = max(houses.values())
+    max_points = None
+    for points in houses.values():
+        if max_points is None or points > max_points:
+            max_points = points
     winning_houses = [house for house, points in houses.items() if points == max_points]
     
     if len(winning_houses) == 1:
@@ -37,19 +40,28 @@ def assign_house(character: Dict[str, Any], questions: List[Tuple[str, List[str]
     house_scores["Ravenclaw"] += character.get("intelligence", 0) * 2
     
 
-    for i, (question, choices, house_weights) in enumerate(questions, 1):
-        print(f"\nQuestion {i}: {question}")
+    index = 0
+    for question, choices, house_weights in questions:
+        index += 1
+        print(f"\nQuestion {index}: {question}")
         answer_index = ask_choice("Choose an answer:", choices) - 1
         chosen_house = house_weights[answer_index]
         house_scores[chosen_house] += 3
     
 
     print("\nSummary of scores:")
-    for house, score in sorted(house_scores.items(), key=lambda x: x[1], reverse=True):
-        print(f"{house}: {score} points")
-    
+    sorted_houses = []
+    for house in HOUSES:
+        sorted_houses.append((house, house_scores[house]))
+    sorted_houses.sort(key=lambda x: x[1], reverse=True)
 
-    max_score = max(house_scores.values())
+    for house, score in sorted_houses:
+        print(f"{house}: {score} points")
+
+    max_score = None
+    for score in house_scores.values():
+        if max_score is None or score > max_score:
+            max_score = score
     winning_houses = [house for house, score in house_scores.items() if score == max_score]
 
     return winning_houses[0]
