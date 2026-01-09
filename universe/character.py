@@ -34,4 +34,4 @@ def modify_money(character, amount):
 
 
 def add_item(character, key, item):
-    character[key].append(str(item))
+    character[key].append(item)
