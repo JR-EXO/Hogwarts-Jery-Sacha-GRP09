@@ -59,7 +59,8 @@ def magic_quiz(character: Dict[str, Any], file_path: str = "../data/magic_quiz.j
     
     score = 0
 
-    for i, qa in enumerate(selected_questions, 1):
+    for i in range(1, len(selected_questions) + 1):
+        qa = selected_questions[i-1]
         print(f"{i}. {qa['question']}")
         answer = input(">  ").strip()
         
